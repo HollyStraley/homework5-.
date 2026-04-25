@@ -137,4 +137,4 @@ If you're looking to randomly assign Alice, Bob, and Carmen to presenter or faci
 python assign_slots.py --team Alice Bob Carmen Dan Maya --slots 3 --history ./history.json
 ```
 
-**Script output:**
+
