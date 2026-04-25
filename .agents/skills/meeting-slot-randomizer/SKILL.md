@@ -59,3 +59,34 @@ If `team` or `slots` is missing, ask the user before running the script.
 
 The script prints a numbered assignment list and writes updated history.
 Claude should relay the list to the user in a readable format, e.g.:
+
+
+# Skill Demo: `meeting-slot-randomizer`
+
+This document shows the skill being used in an agent workflow across three test prompts.
+
+---
+
+## How the skill is discovered
+
+The agent scans `available_skills` at the start of each conversation. The skill's description reads:
+
+> "Randomly assigns team members to upcoming meeting presenter slots in a fair, round-robin-shuffled order… Trigger even for casual requests like 'who should present next week?' or 'shuffle the demo order for my team.'"
+
+When a user asks anything about assigning, rotating, or scheduling who presents or leads a meeting, the agent recognizes the match and loads `SKILL.md` before responding.
+
+---
+
+## Test 1 — Normal Case
+
+**User prompt:**
+> "Assign the next 3 presenter slots for my team: Alice, Bob, Carmen, Dan, Maya"
+
+**Agent reasoning:**
+This is a direct match for the skill. The agent extracts `team = [Alice, Bob, Carmen, Dan, Maya]` and `slots = 3`, then runs the script:
+
+```bash
+python assign_slots.py --team Alice Bob Carmen Dan Maya --slots 3 --history ./history.json
+```
+
+**Script output:**
